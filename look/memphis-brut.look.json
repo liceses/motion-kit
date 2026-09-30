@@ -1,0 +1,31 @@
+{
+  "from": "modules/motion/style + styles/skins/memphis-brut.css（本片自建，非既有预设）",
+  "mood": "米白纸面、纯黑轻描边（3px）、彩色硬阴影（6px）、孟菲斯几何只在边缘 —— 印刷品而不是界面",
+  "color": {
+    "ground": "#f7f4ec",
+    "deep": "#eae5da",
+    "card": "#ffffff",
+    "line": "#0a0a0a",
+    "mute": "#6b665c",
+    "ink": "#0a0a0a",
+    "accent": "#c20056",
+    "accent2": "#00d9ff"
+  },
+  "type": {
+    "display": {
+      "face": "Archivo",
+      "weight": 800,
+      "tracking": -0.02
+    },
+    "text": {
+      "face": "Instrument Sans",
+      "weight": 500,
+      "tracking": -0.005
+    },
+    "mono": {
+      "face": "Geist Mono",
+      "weight": 500,
+      "tracking": 0.02
+    }
+  }
+}

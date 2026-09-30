@@ -1,0 +1,45 @@
+# LICENSE · 授权与范围（**先读这一页**）
+
+> 本包（`motion kit`，即本仓库 `modules/motion` 的对外抽取版）**不是 OSI 开源**，
+> 而是 **PolyForm Noncommercial License 1.0.0** 下的**非商用源码共享**。
+> 原因很简单：它的运行时引擎来自 **onetake**，而那套引擎本身就是非商用许可。
+> 完整许可原文见同目录 **`LICENSE-PolyForm-Noncommercial-1.0.0.txt`**（一字未改）。
+
+---
+
+## 1 · 你可以做什么（非商用）
+
+- 个人学习、研究、作品集、非营利机构的**非商业**项目里使用、修改、再分发本包；
+- 再分发时必须**原样保留**本页、`NOTICE.md`、`THIRD-PARTY.md` 与完整许可原文。
+
+## 2 · 你不可以做什么
+
+- **任何商业用途**（含带广告、付费产品、客户交付、公司内部生产等）——
+  需要**分别**取得 **onetake 作者**（引擎）与本仓库作者（组件库/工具/文档）的授权；
+- 移除或改写许可与署名信息。
+
+## 3 · 两处 Required Notice（PolyForm 要求原文保留）
+
+```
+Required Notice: Copyright (c) 2026 Patrick.
+  onetake is free for noncommercial use only.
+  —— 适用于本包 lib/motion.js、lib/ui_kit.js（原样复制，未改一行）
+```
+
+```
+Required Notice: Copyright (c) 2026 make-videos-kit.
+  motion kit（lib/shell.js、components.js、pattern.js、fx.js、rng.js、timeline.js、
+  score.mjs、tools/*、文档、styles/skins/memphis-brut.css）为非商用共享。
+```
+
+## 4 · 本包**不包含**什么（也因此不含额外许可风险）
+
+| 不包含 | 原因 |
+|---|---|
+| `assets/plates/*.png`（5 张孟菲斯图版） | 由本地 **Qwen-Image-2.1** 生成，**Qwen Research License 仅限非商用** —— 为避免叠加第三层限制，本包**不收图版**；要图请用纯代码绘制（`lib/pattern.js` 已能画圆/圆环/同心拱/棋盘/点阵/锯齿/波浪） |
+| `look/*.js`（字体子集） | 内含 **Windows 等线（Dengb.ttf）子集**，不宜再分发；请用 OFL 字体自行生成（见 `NOTICE.md §4`） |
+| `work/`、`renders/`、`out/` | 成片、官方截图、press kit 等第三方材料，与本包授权无关 |
+
+## 5 · 一句话
+
+> 非商用随便用；**商用请先换掉引擎（或用自研动作库）并联系我们与 onetake 作者**。

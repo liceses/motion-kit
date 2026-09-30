@@ -1,0 +1,382 @@
+{
+  "about": "CC0 音效库（Openverse / Freesound 索引）。只有 CC0：可商用、免署名。",
+  "roles": {
+    "kick": [
+      {
+        "file": "kick-01.mp3",
+        "role": "kick",
+        "title": "Lightly Garbled Stereo Thump.wav",
+        "author": "Geoff-Bremner-Audio",
+        "duration_s": 0.55,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/Geoff-Bremner-Audio/sounds/699373",
+        "download_url": "https://cdn.freesound.org/previews/699/699373_10643461-hq.mp3",
+        "bytes": 15456,
+        "sha256": "b07416e970ea2a8d",
+        "query": "deep kick drum thud"
+      }
+    ],
+    "impact": [
+      {
+        "file": "impact-01.mp3",
+        "role": "impact",
+        "title": "Balsa hit 0",
+        "author": "LloydEvans09",
+        "duration_s": 0.28,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/LloydEvans09/sounds/185840",
+        "download_url": "https://cdn.freesound.org/previews/185/185840_2567799-hq.mp3",
+        "bytes": 7872,
+        "sha256": "57079dbc3ca7dcc4",
+        "query": "impact hit wood"
+      },
+      {
+        "file": "impact-02.mp3",
+        "role": "impact",
+        "title": "Wood Hit",
+        "author": "alegemaate",
+        "duration_s": 0.32,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/alegemaate/sounds/364691",
+        "download_url": "https://cdn.freesound.org/previews/364/364691_2531187-hq.mp3",
+        "bytes": 10645,
+        "sha256": "0bb0b9c09dce9acd",
+        "query": "impact hit wood"
+      },
+      {
+        "file": "impact-03.mp3",
+        "role": "impact",
+        "title": "drop06.wav",
+        "author": "newagesoup",
+        "duration_s": 0.42,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/newagesoup/sounds/339364",
+        "download_url": "https://cdn.freesound.org/previews/339/339364_4067257-hq.mp3",
+        "bytes": 5472,
+        "sha256": "dbce1ea434118525",
+        "query": "impact hit wood"
+      }
+    ],
+    "metal": [
+      {
+        "file": "metal-01.mp3",
+        "role": "metal",
+        "title": "Thud3.wav",
+        "author": "BMacZero",
+        "duration_s": 0.42,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/BMacZero/sounds/96138",
+        "download_url": "https://cdn.freesound.org/previews/96/96138_1554918-hq.mp3",
+        "bytes": 11585,
+        "sha256": "286200fd1e10c09c",
+        "query": "metal impact hit"
+      },
+      {
+        "file": "metal-02.mp3",
+        "role": "metal",
+        "title": "Thud2.wav",
+        "author": "BMacZero",
+        "duration_s": 0.58,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/BMacZero/sounds/96137",
+        "download_url": "https://cdn.freesound.org/previews/96/96137_1554918-hq.mp3",
+        "bytes": 15028,
+        "sha256": "155bc4f77a3ee78f",
+        "query": "metal impact hit"
+      },
+      {
+        "file": "metal-03.mp3",
+        "role": "metal",
+        "title": "Sword Impact",
+        "author": "TheBuilder15",
+        "duration_s": 0.73,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/TheBuilder15/sounds/434896",
+        "download_url": "https://cdn.freesound.org/previews/434/434896_6090639-hq.mp3",
+        "bytes": 15660,
+        "sha256": "2f42a6819f2d4d2f",
+        "query": "metal impact hit"
+      }
+    ],
+    "crush": [
+      {
+        "file": "crush-01.mp3",
+        "role": "crush",
+        "title": "Pick up shattered picture frame glass shards.wav",
+        "author": "SpliceSound",
+        "duration_s": 1.71,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/SpliceSound/sounds/156579",
+        "download_url": "https://cdn.freesound.org/previews/156/156579_1480854-hq.mp3",
+        "bytes": 41088,
+        "sha256": "330c308fecbc17ff",
+        "query": "glass shatter crash debris"
+      }
+    ],
+    "sub": [
+      {
+        "file": "sub-01.mp3",
+        "role": "sub",
+        "title": "Dubstep Growl",
+        "author": "Poligonstudio",
+        "duration_s": 0.72,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/Poligonstudio/sounds/392696",
+        "download_url": "https://cdn.freesound.org/previews/392/392696_7383104-hq.mp3",
+        "bytes": 19412,
+        "sha256": "6a3038603768f940",
+        "query": "sub bass drop"
+      },
+      {
+        "file": "sub-02.mp3",
+        "role": "sub",
+        "title": "sub bass 2 secondsssss.wav",
+        "author": "uzerx",
+        "duration_s": 0.79,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/uzerx/sounds/59538",
+        "download_url": "https://cdn.freesound.org/previews/59/59538_704648-hq.mp3",
+        "bytes": 7685,
+        "sha256": "8e6b2c1765dd539c",
+        "query": "sub bass drop"
+      }
+    ],
+    "click": [
+      {
+        "file": "click-01.mp3",
+        "role": "click",
+        "title": "Family Friendly Inspect Sound UI or In-Game Notification.wav",
+        "author": "MATRIXXX_",
+        "duration_s": 0.08,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/MATRIXXX_/sounds/657948",
+        "download_url": "https://cdn.freesound.org/previews/657/657948_6142149-hq.mp3",
+        "bytes": 3235,
+        "sha256": "829a95e895e668c1",
+        "query": "ui click button"
+      },
+      {
+        "file": "click-02.mp3",
+        "role": "click",
+        "title": "Select Granted 04.wav",
+        "author": "MATRIXXX_",
+        "duration_s": 0.08,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/MATRIXXX_/sounds/515823",
+        "download_url": "https://cdn.freesound.org/previews/515/515823_6142149-hq.mp3",
+        "bytes": 3340,
+        "sha256": "e11d688da8e82b4a",
+        "query": "ui click button"
+      },
+      {
+        "file": "click-03.mp3",
+        "role": "click",
+        "title": "UI Button Click",
+        "author": "benzix2",
+        "duration_s": 0.12,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/benzix2/sounds/467951",
+        "download_url": "https://cdn.freesound.org/previews/467/467951_6769414-hq.mp3",
+        "bytes": 4593,
+        "sha256": "0eed6c7af2f5b373",
+        "query": "ui click button"
+      }
+    ],
+    "tick": [
+      {
+        "file": "tick-01.mp3",
+        "role": "tick",
+        "title": "Wall clock snippet 01",
+        "author": "cabled_mess",
+        "duration_s": 0.18,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/cabled_mess/sounds/361783",
+        "download_url": "https://cdn.freesound.org/previews/361/361783_5450487-hq.mp3",
+        "bytes": 7056,
+        "sha256": "c4d61aa8bbf915fa",
+        "query": "short tick clock"
+      },
+      {
+        "file": "tick-02.mp3",
+        "role": "tick",
+        "title": "Wall clock snippet 03",
+        "author": "cabled_mess",
+        "duration_s": 0.18,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/cabled_mess/sounds/361781",
+        "download_url": "https://cdn.freesound.org/previews/361/361781_5450487-hq.mp3",
+        "bytes": 7152,
+        "sha256": "4856cbd65b41cdd8",
+        "query": "short tick clock"
+      }
+    ],
+    "whoosh": [
+      {
+        "file": "whoosh-01.mp3",
+        "role": "whoosh",
+        "title": "whoosh.wav",
+        "author": "LloydEvans09",
+        "duration_s": 0.73,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/LloydEvans09/sounds/332003",
+        "download_url": "https://cdn.freesound.org/previews/332/332003_2567799-hq.mp3",
+        "bytes": 20039,
+        "sha256": "7cd36e4623e0d316",
+        "query": "whoosh transition"
+      },
+      {
+        "file": "whoosh-02.mp3",
+        "role": "whoosh",
+        "title": "Whoosh Bamboo 4",
+        "author": "Sadiquecat",
+        "duration_s": 0.76,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/Sadiquecat/sounds/706679",
+        "download_url": "https://cdn.freesound.org/previews/706/706679_5287430-hq.mp3",
+        "bytes": 19632,
+        "sha256": "eba8969a38780f62",
+        "query": "whoosh transition"
+      },
+      {
+        "file": "whoosh-03.mp3",
+        "role": "whoosh",
+        "title": "Whoosh 1",
+        "author": "Kinoton",
+        "duration_s": 0.8,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/Kinoton/sounds/427823",
+        "download_url": "https://cdn.freesound.org/previews/427/427823_2247456-hq.mp3",
+        "bytes": 20544,
+        "sha256": "22c128c9f871a34e",
+        "query": "whoosh transition"
+      }
+    ],
+    "riser": [
+      {
+        "file": "riser-01.mp3",
+        "role": "riser",
+        "title": "reverse bass.wav",
+        "author": "neezen.",
+        "duration_s": 1.71,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/neezen./sounds/503812",
+        "download_url": "https://cdn.freesound.org/previews/503/503812_9637845-hq.mp3",
+        "bytes": 40467,
+        "sha256": "91e421a35c6a28cf",
+        "query": "riser build up"
+      },
+      {
+        "file": "riser-02.mp3",
+        "role": "riser",
+        "title": "Inhale with glass.wav",
+        "author": "guitargeorge-2",
+        "duration_s": 1.77,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/guitargeorge-2/sounds/608217",
+        "download_url": "https://cdn.freesound.org/previews/608/608217_11586128-hq.mp3",
+        "bytes": 42995,
+        "sha256": "9489afff9006a03a",
+        "query": "riser build up"
+      }
+    ],
+    "hat": [
+      {
+        "file": "hat-01.mp3",
+        "role": "hat",
+        "title": "Hi-Hat Closed 10.mp3",
+        "author": "blakengouda",
+        "duration_s": 0.2,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/blakengouda/sounds/509965",
+        "download_url": "https://cdn.freesound.org/previews/509/509965_8033171-hq.mp3",
+        "bytes": 5008,
+        "sha256": "21fecf5df2da9c8c",
+        "query": "hihat closed"
+      },
+      {
+        "file": "hat-02.mp3",
+        "role": "hat",
+        "title": "hat cl4.wav",
+        "author": "shpira",
+        "duration_s": 0.4,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/shpira/sounds/317092",
+        "download_url": "https://cdn.freesound.org/previews/317/317092_656142-hq.mp3",
+        "bytes": 6258,
+        "sha256": "8505b474452c3496",
+        "query": "hihat closed"
+      }
+    ],
+    "clap": [
+      {
+        "file": "clap-01.mp3",
+        "role": "clap",
+        "title": "Anu Clap 01.wav",
+        "author": "pomeroyjoshua",
+        "duration_s": 0.11,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/pomeroyjoshua/sounds/513415",
+        "download_url": "https://cdn.freesound.org/previews/513/513415_938351-hq.mp3",
+        "bytes": 4280,
+        "sha256": "9284ee483860e7c8",
+        "query": "clap one shot"
+      },
+      {
+        "file": "clap-02.mp3",
+        "role": "clap",
+        "title": "6 Tiny Snare.aif",
+        "author": "darcyadam",
+        "duration_s": 0.15,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/darcyadam/sounds/634283",
+        "download_url": "https://cdn.freesound.org/previews/634/634283_3379512-hq.mp3",
+        "bytes": 4224,
+        "sha256": "c8632fed64a6f2aa",
+        "query": "clap one shot"
+      }
+    ],
+    "shaker": [
+      {
+        "file": "shaker-01.mp3",
+        "role": "shaker",
+        "title": "Drums Noisy Hat Percussion",
+        "author": "waveplaySFX",
+        "duration_s": 0.28,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/waveplaySFX/sounds/381826",
+        "download_url": "https://cdn.freesound.org/previews/381/381826_1676145-hq.mp3",
+        "bytes": 10124,
+        "sha256": "cae04aafabc91e58",
+        "query": "shaker percussion"
+      },
+      {
+        "file": "shaker-02.mp3",
+        "role": "shaker",
+        "title": "Matchbox wood shaker percussion one-shot foley sound.wav",
+        "author": "Duisterwho",
+        "duration_s": 0.5,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/Duisterwho/sounds/644706",
+        "download_url": "https://cdn.freesound.org/previews/644/644706_13590673-hq.mp3",
+        "bytes": 10848,
+        "sha256": "c9e3aa88f0dc0a24",
+        "query": "shaker percussion"
+      }
+    ],
+    "room": [
+      {
+        "file": "room-01.mp3",
+        "role": "room",
+        "title": "Type Locker Room 200927_0053.wav",
+        "author": "szegvari",
+        "duration_s": 6.74,
+        "license": "cc0 1.0",
+        "source_url": "https://freesound.org/people/szegvari/sounds/536792",
+        "download_url": "https://cdn.freesound.org/previews/536/536792_2282212-hq.mp3",
+        "bytes": 188198,
+        "sha256": "892a806074242398",
+        "query": "room tone quiet ambience"
+      }
+    ]
+  }
+}

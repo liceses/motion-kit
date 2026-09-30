@@ -1,0 +1,319 @@
+/* ==========================================================================
+   styles/brutal.css — 新野兽派设计系统 v2（单一真相）
+   由 tools/build-index.mjs 读入并注入根 index.html 的 <style>，
+   类名统一 k- 前缀，避免与装配层（.cap / .host / .wipe）撞名。
+   ========================================================================== */
+
+/* ---------- 1. 设计令牌 ---------- */
+:root {
+  /* 表面 */
+  --paper: #ffffff;
+  --ink: #0a0a0a;
+  /* 彩（只做块/框/影，不做白底文字） */
+  --mag: #ff006e;          /* 只做块/框/影/转场，不承载文字 */
+  --mag-deep: #c20056;      /* 承载文字的品红：配白字 6.13:1 */
+  --acid: #ccff00;
+  --cyan: #00d9ff;
+  --orange: #ff9500;
+
+  /* 按表面分配的文字色（对比度实测见 design.md §3） */
+  --t-on-paper: #0a0a0a;          /* 19.6:1 */
+  --t-on-paper-muted: #3d3d3d;    /* 10.7:1 */
+  --t-on-paper-accent: #b3004f;   /*  6.9:1  ← 白底强调色（替掉 #ff006e 的 3.83:1） */
+  --t-on-ink: #ffffff;            /* 19.6:1 */
+  --t-on-ink-acid: #ccff00;       /* 16.7:1 */
+  --t-on-ink-cyan: #00d9ff;       /* 11.6:1 */
+  --t-on-ink-warn: #ff9500;       /*  8.9:1 */
+  --t-on-ink-mag: #ff006e;        /*  5.1:1（仅 ≥28px 大字号） */
+  --t-on-color: #0a0a0a;          /* 压品红/酸绿/青/橙一律黑字 */
+
+  /* 字号刻度（1080p 硬下限） */
+  --f-hero: 168px;
+  --f-h1: 68px;
+  --f-h2: 44px;
+  --f-h3: 31px;
+  --f-body: 26px;
+  --f-num: 56px;
+  --f-label: 20px;
+
+  /* 间距与几何 */
+  --g: 24px;
+  --g-sm: 12px;
+  --pad: 18px 22px;
+  --edge: 120px;
+  --bw: 6px;
+  --bw-thin: 4px;
+  --shadow: 10px 10px 0 0 #0a0a0a;
+  --shadow-sm: 8px 8px 0 0 #0a0a0a;
+  --safe-top: 96px;
+  --safe-bottom: 848px;
+}
+
+/* ---------- 2. 场景公共件 ---------- */
+.k-kicker {
+  position: absolute; left: var(--edge); top: 62px;
+  font-family: 'Consolas', 'Microsoft YaHei', monospace; font-weight: bold;
+  font-size: var(--f-label); letter-spacing: 0.14em;
+  background: var(--ink); color: #fff; padding: 8px 18px; border: var(--bw-thin) solid #000;
+}
+.k-kicker.mag { background: #c20056; color: #ffffff; }
+.k-kicker.acid { background: var(--acid); color: var(--t-on-color); }
+.k-kicker.cyan { background: var(--cyan); color: var(--t-on-color); }
+.k-kicker.orange { background: var(--orange); color: var(--t-on-color); }
+
+.k-src {
+  position: absolute; right: 130px; top: 62px;
+  font-family: 'Consolas', 'Microsoft YaHei', monospace; font-weight: bold;
+  font-size: var(--f-label); letter-spacing: 0.04em;
+  background: var(--cyan); color: var(--t-on-color);
+  border: 5px solid #000; padding: 8px 16px; max-width: 1080px; text-align: right;
+}
+
+.k-h1 {
+  position: absolute; left: var(--edge); top: 116px;
+  font-size: var(--f-h1); line-height: 1.05; font-weight: 900; letter-spacing: -0.01em;
+  color: var(--t-on-paper); margin: 0;
+}
+.k-h1 em { font-style: normal; color: var(--t-on-paper-accent); }
+
+/* 版面区：绝对定位 + flex 撑满，内容自动分布，不留底部空洞 */
+.k-zone {
+  position: absolute; display: flex; flex-direction: column; gap: var(--g);
+  justify-content: space-between; box-sizing: border-box; opacity: 1;
+}
+.k-zone.tight { gap: var(--g-sm); }
+.k-zone.start { justify-content: flex-start; }
+
+/* ---------- 3. 卡片 ---------- */
+.k-card {
+  position: relative; opacity: 0; background: var(--paper); border: var(--bw) solid #000;
+  box-shadow: var(--shadow); box-sizing: border-box; padding: var(--pad);
+  display: flex; flex-direction: column; gap: 10px; justify-content: center;
+}
+.k-card.ink { background: var(--ink); }
+.k-card.acid { background: var(--acid); }
+.k-card.mag { background: #c20056; }
+.k-card.cyan { background: var(--cyan); }
+.k-card.orange { background: var(--orange); }
+.k-card.sh-mag { box-shadow: 10px 10px 0 0 var(--mag); }
+.k-card.sh-acid { box-shadow: 10px 10px 0 0 var(--acid); }
+.k-card.sh-cyan { box-shadow: 10px 10px 0 0 var(--cyan); }
+.k-card.sh-orange { box-shadow: 10px 10px 0 0 var(--orange); }
+
+/* 卡内字级 */
+.k-h {                                 /* 卡头（mono 标签） */
+  font-family: 'Consolas', 'Microsoft YaHei', monospace; font-weight: bold;
+  font-size: var(--f-label); letter-spacing: 0.08em; color: var(--t-on-paper-muted);
+}
+.k-t {                                 /* 卡标题 */
+  font-size: var(--f-h3); font-weight: 900; line-height: 1.28; color: var(--t-on-paper);
+}
+.k-b {                                 /* 正文／要点 */
+  font-size: var(--f-body); font-weight: 700; line-height: 1.45; color: var(--t-on-paper);
+}
+.k-b em { font-style: normal; color: var(--t-on-paper-accent); }
+.k-s {                                 /* 来源／脚注 */
+  font-family: 'Consolas', 'Microsoft YaHei', monospace;
+  font-size: 19px; line-height: 1.4; color: var(--t-on-paper-muted);
+}
+.k-card.ink .k-h { color: #9a9a9a; }
+.k-card.ink .k-t, .k-card.ink .k-b { color: var(--t-on-ink); }
+.k-card.ink .k-b em { color: var(--t-on-ink-acid); }
+.k-card.ink .k-s { color: #b0b0b0; }
+.k-card.mag .k-h, .k-card.mag .k-t, .k-card.mag .k-b, .k-card.mag .k-s { color: #ffffff; }
+.k-card.mag .k-b em { color: #ffd6e6; }
+.k-card.acid .k-h, .k-card.acid .k-t, .k-card.acid .k-b, .k-card.acid .k-s { color: var(--t-on-color); }
+.k-card.cyan .k-h, .k-card.cyan .k-t, .k-card.cyan .k-b, .k-card.cyan .k-s { color: var(--t-on-color); }
+.k-card.orange .k-h, .k-card.orange .k-t, .k-card.orange .k-b, .k-card.orange .k-s { color: var(--t-on-color); }
+
+.k-num { font-size: var(--f-num); font-weight: 900; line-height: 1.0;
+  font-variant-numeric: tabular-nums; color: var(--t-on-paper); }
+.k-num em { font-style: normal; font-size: 30px; }
+.k-num.dark { color: var(--t-on-ink); }
+
+.k-chip {
+  display: inline-block; font-family: 'Consolas', 'Microsoft YaHei', monospace; font-weight: bold;
+  font-size: var(--f-label); background: var(--acid); color: var(--t-on-color);
+  border: var(--bw-thin) solid #000; padding: 2px 12px; white-space: nowrap;
+}
+.k-chip.mag { background: #c20056; color: #ffffff; }
+.k-chip.cyan { background: var(--cyan); }
+.k-chip.orange { background: var(--orange); }
+.k-chip.ink { background: var(--ink); color: var(--t-on-ink); }
+
+/* ---------- 4. 通栏行 / 数字盘 ---------- */
+.k-row {
+  position: relative; opacity: 0; display: flex; align-items: center; gap: 20px;
+  background: var(--paper); border: 5px solid #000; box-shadow: var(--shadow-sm);
+  box-sizing: border-box; padding: 0 20px; min-height: 104px;
+}
+.k-row .k-no {
+  flex: none; width: 74px; align-self: stretch; display: grid; place-items: center;
+  background: #c20056; color: #fff; font-family: 'Consolas', monospace;
+  font-weight: bold; font-size: 32px;
+}
+.k-row .k-thumb { flex: none; height: 72px; border: var(--bw-thin) solid #000; overflow: hidden; background: #000; }
+.k-row .k-thumb img { height: 100%; width: auto; display: block; object-fit: cover; }
+.k-row .k-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.k-row .k-rt { flex: none; padding-left: 14px; text-align: right; }
+
+/* ---------- 5. 通栏判断条 / 跑马灯 ---------- */
+.k-band {
+  opacity: 0; background: var(--ink); border: var(--bw) solid #000; box-shadow: var(--shadow);
+  box-sizing: border-box; padding: 16px 24px; display: flex; flex-direction: column; gap: 6px;
+  justify-content: center;
+}
+.k-band .k-q { font-size: var(--f-h3); font-weight: 900; line-height: 1.28; color: var(--t-on-ink); }
+.k-band .k-q em { font-style: normal; color: var(--t-on-ink-acid); }
+.k-band.mag { background: #c20056; }
+.k-band.mag .k-q { color: #ffffff; }
+.k-band.mag .k-q em { color: #ffd6e6; }
+.k-band .k-n { font-family: 'Consolas', 'Microsoft YaHei', monospace; font-size: 19px; color: #b0b0b0; }
+.k-band.mag .k-n { color: #ffd6e6; }
+
+.k-marquee { position: absolute; left: 0; right: 0; height: 54px; background: var(--ink);
+  border-top: 5px solid #000; border-bottom: 5px solid #000; overflow: hidden; }
+.k-mline { position: absolute; white-space: nowrap; font-family: 'Consolas','Microsoft YaHei',monospace;
+  font-weight: bold; font-size: var(--f-body); color: var(--t-on-ink-acid); line-height: 44px; top: 3px;
+  will-change: transform; }
+
+/* ---------- 6. 证据图（白底板 + 框 + 硬阴影；网格布局保证底部来源条永不被挤出） ---------- */
+.k-evidence {
+  position: relative; opacity: 0; box-sizing: border-box; background: #ffffff;
+  border: 7px solid #000; box-shadow: 12px 12px 0 0 #000; overflow: hidden;
+  display: grid; grid-template-rows: 1fr auto;
+}
+.k-evidence img { width: 100%; height: 100%; min-height: 0; display: block;
+  object-fit: contain; object-position: top center; background: #f0f0f0; }
+.k-evidence .k-cap {
+  background: #0a0a0a; color: #d8d8d8; padding: 7px 14px;
+  font-family: 'Consolas','Microsoft YaHei',monospace; font-size: 19px; line-height: 1.3;
+}
+.k-evidence.fill img { object-fit: cover; }
+
+/* ---------- 7. 印章 ---------- */
+/* 注意：文字必须包在 .stamp-in 里。圆形元素用 border-radius:50% 时，
+   对比度检查器会取元素 bbox 的四角当背景（落在圆外 → 纸底点阵），
+   给内层 span 显式背景后检查器读到才是真背景。 */
+.k-stamp .stamp-in { display: block; background: #c20056; color: #ffffff; padding: 4px 8px; }
+.k-stamp {
+  position: absolute; opacity: 0; border-radius: 50%; background: #c20056; border: 7px solid #000;
+  display: grid; place-items: center; text-align: center;
+  font-family: 'Consolas','Microsoft YaHei',monospace; font-weight: bold;
+  font-size: 24px; line-height: 1.15; color: #ffffff;
+}
+
+/* ---------- 8. 数字 plate（标签 + 大数字 + 注） ---------- */
+.k-plate {
+  opacity: 0; background: var(--paper); border: var(--bw) solid #000; box-shadow: var(--shadow);
+  box-sizing: border-box; padding: 14px 18px; display: flex; flex-direction: column;
+  justify-content: center; gap: 4px;
+}
+.k-plate .k-pl { font-family: 'Consolas','Microsoft YaHei',monospace; font-weight: bold;
+  font-size: var(--f-label); letter-spacing: 0.06em; color: var(--t-on-paper-muted); }
+.k-plate .k-pv { font-size: var(--f-num); font-weight: 900; line-height: 1.02;
+  font-variant-numeric: tabular-nums; }
+.k-plate .k-pv em { font-style: normal; font-size: 28px; }
+.k-plate .k-pn { font-family: 'Consolas','Microsoft YaHei',monospace; font-size: 19px;
+  line-height: 1.35; color: var(--t-on-paper-muted); }
+
+/* ---------- 8.5 微动效底条（fx: fill；初态 scaleX 由 gsap.set 设定，不写 CSS transform） ---------- */
+.k-fxbar { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: #ccff00;
+  transform-origin: left center; z-index: 3; }
+
+/* ---------- 9. 字幕 v2（色条扫描 + 整句出入场，无逐字点亮） ---------- */
+.cap { position: absolute; left: 0; right: 0; bottom: 92px; z-index: 60; pointer-events: none; }
+.cap-in {
+  position: relative; margin: 0 auto; width: fit-content; max-width: 1720px;
+  background: var(--ink); border: 5px solid #000; padding: 12px 26px 20px;
+  box-sizing: border-box; overflow: hidden;
+}
+.cap-text {
+  display: block; white-space: nowrap; font-family: 'Consolas', 'Microsoft YaHei', monospace;
+  font-weight: bold; color: #ffffff; line-height: 1.22; letter-spacing: 0.01em;
+}
+.cap-min  { position: absolute; inset: 0; background: var(--mag);
+  transform-origin: right center; z-index: 2; }
+.cap-mout { position: absolute; inset: 0; background: var(--mag);
+  transform-origin: left center; z-index: 3; }
+.cap-progress { position: absolute; left: 0; bottom: 0; width: 100%; height: 8px;
+  background: var(--mag); transform-origin: left center; z-index: 4; }
+
+/* ---------- 10. 微动效状态类（cue 用：只改状态，不做位移） ----------
+   设计原则：有效微动效要让**信息本身**变状态，而不是让容器闪一下。
+   .is-on  = 累积留痕（persist / mark / step 用），不复原
+   .is-dim = 焦点转移时的静默态（硬性降饱和，不做透明度——透明度是本设计系统禁用的）
+   ⚠️ 不要在这两类里写 transform 位移：位移会和入场动画叠加显乱（v5 已定的纪律）。
+   ------------------------------------------------------------------ */
+.k-row.is-on { box-shadow: 10px 10px 0 0 var(--mag), inset 12px 0 0 0 var(--mag); }
+.k-row.is-on .k-no { background: var(--ink); }
+.k-card.is-on { box-shadow: 12px 12px 0 0 var(--mag), inset 12px 0 0 0 var(--mag); }
+.k-plate.is-on { background: var(--acid); box-shadow: 10px 10px 0 0 var(--mag), inset 12px 0 0 0 var(--mag); }
+.k-band.is-on { background: #c20056; }
+.is-dim { filter: grayscale(1) contrast(0.82); }
+/* 场景自定义类名也要吃 .is-on（kit 的 .k-row/.k-card 盖不住它们）——
+   用 .x.is-on 提高特异性，压过场景样式里的 .x { box-shadow }。 */
+/* 只换阴影颜色太弱（小卡片上几乎看不出来），所以再加一条 12px 内嵌品红竖条：
+   它是"这条已经讲过了"的画面证据，不占布局宽度、不位移。 */
+.is-on.cell, .is-on.plate, .is-on.node, .is-on.qc, .is-on.quote, .is-on.acc, .is-on.hot,
+.is-on.rt, .is-on.down, .is-on.doc, .is-on.obj, .is-on.reply, .is-on.sen, .is-on.hn,
+.is-on.side, .is-on.judge, .is-on.fact, .is-on.ten, .is-on.no, .is-on.bars, .is-on.resp,
+.is-on.spec, .is-on.pc, .is-on.chip2, .is-on.c1, .is-on.gauge, .is-on.plan, .is-on.mini,
+.is-on.fc { box-shadow: 14px 14px 0 0 var(--mag), inset 12px 0 0 0 var(--mag); }
+/* 数字滚动用：等宽数字，避免滚动时宽度抖动 */
+.k-pv[data-to], .k-num[data-to] { font-variant-numeric: tabular-nums; }
+
+/* ══════════════════════════════════════════════════════════════════════
+   双轨制 v4（09-13 用户反馈后建立）：精简结论 + 原始信息
+   第一层 = 我们合成的判断/数字/时间线；第二层 = 出处原件
+   交互：缩略图常驻 → 口播说到时展开成大图 → 说完收回（fx: expand）
+   几何约定（**必须照此布局**，因为展开动效的起点坐标是静态算出来的、
+   不能在渲染时测量 —— getBoundingClientRect 在逐帧 seek 下取不稳）：
+     缩略图条第 i 项：left 1564 / top = 262 + i*166 / w 236 / h 152
+     .k-expand.x-tall  1280×840  → 居中 (320, 60)    竖图（推文卡）
+     .k-expand.x-wide  1440×830  → 居中 (240, 60)    横图（网页截图）
+     ⚠️ 上面这两个数字的**生效实现**在 tools/build-index.mjs 的展开几何
+        （`SH` 给尺寸、`cx = (1920-w)/2`、`cy = 60`）；本文件与之一致，改一处必须同步另一处。
+        （09-13 修：旧注释写的 620×805 / 1150×742 是上一迭代的残留值，已按实际规则更正；
+          展开层的落位默认 top=60，正好顶在 HUD(0-60) 下沿，来源条 .k-eh 才露得出来。
+          09-16 修：原先指向的 EXPAND_GEO 常量是死代码且数值已过期，已删除，改指生效规则）
+   ══════════════════════════════════════════════════════════════════════ */
+.k-thumbstrip {
+  position: absolute; right: var(--edge); top: 262px; width: 236px;
+  display: flex; flex-direction: column; gap: 14px; z-index: 30;
+}
+.k-thumb {
+  position: relative; opacity: 0; box-sizing: border-box;
+  width: 236px; height: 152px; border: 5px solid #000; background: #fff;
+  box-shadow: 8px 8px 0 0 #000; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.k-thumb img { display: block; width: 226px; height: 117px; object-fit: cover; object-position: top left; }
+.k-thumb .k-thlab {
+  height: 25px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between;
+  gap: 6px; padding: 0 7px; background: #0a0a0a; color: #ccff00;
+  font-family: 'Consolas', 'Microsoft YaHei', monospace; font-size: 19px; font-weight: bold;
+  white-space: nowrap; overflow: hidden;
+}
+.k-thumb .k-thlab i { font-style: normal; color: #b0b0b0; font-size: 19px; }
+.k-thumb.is-on { box-shadow: 12px 12px 0 0 var(--mag), inset 10px 0 0 0 var(--mag); }
+
+/* 展开大图：浮层，故意盖住下方内容 —— 必须带 data-layout-allow-overlap/occlusion */
+.k-expand {
+  position: absolute; left: 0; top: 0; z-index: 55; opacity: 0; pointer-events: none;
+  box-sizing: border-box; border: 6px solid #000; background: #fff;
+  box-shadow: 18px 18px 0 0 var(--mag); overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.k-expand .k-eh {
+  flex: none; height: 44px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; padding: 0 12px; background: #c20056; color: #ffffff;
+  font-family: 'Consolas', 'Microsoft YaHei', monospace; font-size: 19px; font-weight: bold;
+  white-space: nowrap; overflow: hidden;
+}
+.k-expand .k-eh i { font-style: normal; color: #ffd6e6; }
+.k-expand .k-eb { flex: 1; min-height: 0; }
+.k-expand .k-eb img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: top center; }
+.k-expand.cover .k-eb img { object-fit: cover; object-position: top left; }
+.k-expand.x-tall { width: 1280px; height: 840px; }   /* 推文卡：按截图原宽 1:1 呈现，竖向裁到 900 高 */
+.k-expand.x-wide { width: 1440px; height: 830px; }

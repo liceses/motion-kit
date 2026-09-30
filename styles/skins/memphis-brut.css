@@ -1,0 +1,333 @@
+/* ==========================================================================
+   styles/skins/memphis-brut.css — 第 5 套皮肤：孟菲斯 × 新野兽派
+   --------------------------------------------------------------------------
+   它是什么：`styles/brutal.css`（野兽派令牌 = 唯一真相）之上的一层皮肤。
+   与既有四套预设（soft / swiss / brutal / blueprint）同一层级：**换皮肤只换这一份**。
+
+   给谁用：
+     ① 动效短片（onetake comp）—— 通过 `modules/motion/tools/tokens-from-css.mjs`
+        单向生成 `modules/motion/style/tokens.js` 与 `look/memphis-brut.look.json`；
+     ② 网页片（templates/ 骨架）—— 骨架若用 var(--bw) / var(--shadow) / var(--paper)，
+        本文件一引就自动变轻。
+
+   与 brutal.css 的差别（"轻一点、更视觉友好"）：
+     描边 6px → 3px（大件 4px / 小件 2px）｜硬阴影 10px → 6px｜底 white → 米白 #f7f4ec
+     圆弧/拱形**只做装饰几何，不做容器**；容器一律零圆角。
+
+   纪律（继承 brutal.css / news-flash-video §2）：
+     · 装饰色**永不承载文字**：--m-mag #ff006e / --m-acid / --m-cyan / --m-orange 只做块/框/影/装饰；
+     · 承载文字的品红一律 --m-mag-deep #c20056 + 白字（6.12:1）；
+     · 文字对比度表见下（每条都实算过，比例写在注释里，STYLE.md 复述同一张表）；
+     · 装饰层 z-index 一律在内容之下（`--m-deco-z:0`），**绝不压字**。
+
+   已知边界（不许含糊）：brutal.css 里有几处**写死的** `5px solid #000` / `12px 12px 0 0 #000`
+   （.k-row / .k-thumb / .k-evidence / .k-expand 等）。本皮肤只覆盖**令牌**，覆盖不到那些字面量 ——
+   要完全生效，骨架必须写成 var(--bw) / var(--shadow)。这条写在 STYLE.md「已知边界」里。
+   ========================================================================== */
+
+:root {
+  /* ── 孟菲斯层：底 / 墨 / 彩 ─────────────────────────────────────────── */
+  --m-ground:      #f7f4ec;   /* 画布底（米白）—— 与 cards/ 的孟菲斯卡片同源 */
+  --m-ground-deep: #eae5da;   /* 暗角 / 远平面 / 卡片下的槽 */
+  --m-paper:       #ffffff;   /* 承载内容的表面 */
+  --m-ink:         #0a0a0a;   /* 18.0:1 on 米白 */
+
+  --m-mag:         #ff006e;   /* 装饰色：只做块/框/影/装饰，**永不承载文字**（米白底仅 3.49:1） */
+  --m-mag-deep:    #c20056;   /* 承载文字的品红：配白字 6.13:1 / 自身在米白上 5.57:1 */
+  --m-acid:        #ccff00;   /* 装饰色：米白底 1.07:1 → 只能做面，字用墨（16.85:1） */
+  --m-cyan:        #00d9ff;   /* 装饰色：米白底 1.54:1 → 只能做面，字用墨（11.66:1） */
+  --m-orange:      #ff9500;   /* 装饰色：米白底 2.00:1 → 只能做面，字用墨（9.00:1） */
+
+  --m-ink-soft:    #3d3d3d;   /* 米白底次级文字 9.88:1 */
+  --m-mute:        #6b665c;   /* 米白底弱化文字 5.19:1（≥5:1，比 AA 底线高一档） */
+  --m-on-ink-dim:  #b0b0b0;   /* 墨底弱化文字 9.13:1 */
+  --m-on-mag:      #ffffff;   /* 深品红上的文字 6.12:1 */
+  --m-on-mag-dim:  #ffd6e6;   /* 深品红上的次级文字 4.67:1（仅 ≥28px） */
+
+  /* ── 几何：轻一点 ──────────────────────────────────────────────────── */
+  --m-bw:      3px;           /* 主描边（原 6px） */
+  --m-bw-lg:   4px;           /* 大件（表 / 全屏框） */
+  --m-bw-sm:   2px;           /* 小件（角标内框 / 分隔） */
+  --m-shadow:  6px 6px 0 0 var(--m-ink);        /* 原 10px 10px 0 0 #0a0a0a */
+  --m-shadow-sm: 4px 4px 0 0 var(--m-ink);
+  --m-shadow-mag:    6px 6px 0 0 var(--m-mag);
+  --m-shadow-cyan:   6px 6px 0 0 var(--m-cyan);
+  --m-shadow-orange: 6px 6px 0 0 var(--m-orange);
+  --m-shadow-acid:   6px 6px 0 0 var(--m-acid);
+
+  --m-radius:  0px;           /* 容器一律零圆角 */
+  --m-deco-z:  0;             /* 装饰层永远在内容之下 */
+  --m-edge:    120px;         /* 内容安全边（1080p 沿用 brutal.css 的 --edge） */
+  --m-cap-y:   848px;         /* 内容安全下沿（字幕条在 897 起，见 news-flash-video §10.11） */
+
+  /* ── 字号梯次：沿用 brutal.css，全片 ≥19px ─────────────────────────── */
+  --m-f-hero: 168px; --m-f-h1: 68px; --m-f-h2: 44px; --m-f-h3: 31px;
+  --m-f-body: 26px;  --m-f-num: 56px; --m-f-label: 20px;
+
+  /* ── 动效：曲线具名（字面量只出现在这里；依据动效研究 R-14）───────── */
+  --m-ease-out:    cubic-bezier(.23, 1, .32, 1);      /* 进场 / 落定 */
+  --m-ease-inout:  cubic-bezier(.77, 0, .175, 1);     /* 屏内位移 */
+  --m-ease-snap:   cubic-bezier(.16, 1, .3, 1);       /* 砸落（snap 那一档） */
+  --m-dur-micro:   140ms;   /* 按压 / 记号 */
+  --m-dur-base:    300ms;   /* 元素落定 */
+  --m-dur-reveal:  700ms;   /* 叙事揭示（480–1000 一档，R-15） */
+  --m-stagger-char: 30ms;   /* 逐字（20–40） */
+  --m-stagger-block: 70ms;  /* 逐块（60–100） */
+}
+
+/* ── 令牌覆盖：让用 var() 的骨架自动变轻（不覆盖 --paper：卡片仍是白）── */
+:root {
+  --bw:      var(--m-bw);
+  --bw-thin: var(--m-bw-sm);
+  --shadow:    var(--m-shadow);
+  --shadow-sm: var(--m-shadow-sm);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   1 · 基面
+   ══════════════════════════════════════════════════════════════════════════ */
+.m-ground {
+  position: absolute; inset: 0; background: var(--m-ground); overflow: hidden;
+}
+/* 米白底上的极细格线（"工程纸"感；装饰，永不压字） */
+.m-lattice {
+  position: absolute; inset: 0; pointer-events: none; z-index: var(--m-deco-z);
+  opacity: .5;
+  background-image:
+    repeating-linear-gradient(to right, rgba(10,10,10,.10) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(to bottom, rgba(10,10,10,.10) 0 1px, transparent 1px 120px);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   2 · 组件（全部零圆角、轻描边、彩色硬阴影）
+   ══════════════════════════════════════════════════════════════════════════ */
+.m-frame {                       /* 最外层画框 */
+  position: absolute; box-sizing: border-box;
+  background: var(--m-paper);
+  border: var(--m-bw-lg) solid var(--m-ink);
+  box-shadow: var(--m-shadow);
+}
+.m-card {                        /* 卡片 */
+  position: absolute;            /* 用 left/top 定位；写成 relative 会被文档流叠成一列（实测：相机幕四张卡垂直堆叠） */
+  box-sizing: border-box; opacity: 0;
+  background: var(--m-paper);
+  border: var(--m-bw) solid var(--m-ink);
+  box-shadow: var(--m-shadow);
+  padding: 18px 22px;
+  display: flex; flex-direction: column; gap: 10px; justify-content: center;
+}
+.m-card.sh-mag    { box-shadow: var(--m-shadow-mag); }
+.m-card.sh-cyan   { box-shadow: var(--m-shadow-cyan); }
+.m-card.sh-orange { box-shadow: var(--m-shadow-orange); }
+.m-card.sh-acid   { box-shadow: var(--m-shadow-acid); }
+.m-card.ink  { background: var(--m-ink); }
+.m-card.ink .m-t, .m-card.ink .m-b { color: #ffffff; }
+.m-card.mag  { background: var(--m-mag-deep); }
+.m-card.mag .m-t, .m-card.mag .m-b { color: var(--m-on-mag); }
+.m-card.acid { background: var(--m-acid); }
+.m-card.cyan { background: var(--m-cyan); }
+.m-card.orange { background: var(--m-orange); }
+.m-card.acid .m-t, .m-card.cyan .m-t, .m-card.orange .m-t,
+.m-card.acid .m-b, .m-card.cyan .m-b, .m-card.orange .m-b { color: var(--m-ink); }
+
+.m-badge {                       /* 角标（每段首帧那一个）—— 3px 描边 + 6px 彩色硬阴影 */
+  position: absolute; box-sizing: border-box; z-index: 20;
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--m-ink); color: #ffffff;
+  border: var(--m-bw) solid var(--m-ink);
+  box-shadow: var(--m-shadow-cyan);
+  padding: 6px 12px;
+  font-family: 'Consolas', 'Microsoft YaHei', monospace; font-weight: bold;
+  font-size: var(--m-f-label); letter-spacing: .08em; white-space: nowrap;
+}
+.m-badge .m-badge-no { color: var(--m-acid); }          /* 档案号（母题 M-03 的变体） */
+.m-badge.mag { background: var(--m-mag-deep); box-shadow: var(--m-shadow-cyan); }
+.m-badge.mag .m-badge-no { color: var(--m-on-mag-dim); }
+.m-badge.acid { background: var(--m-acid); color: var(--m-ink); box-shadow: var(--m-shadow-mag); }
+.m-badge.acid .m-badge-no { color: var(--m-mag-deep); }   /* 酸绿底上不能再用酸绿写字（会隐形） */
+.m-badge.cyan { background: var(--m-cyan); color: var(--m-ink); box-shadow: var(--m-shadow-mag); }
+.m-badge.cyan .m-badge-no { color: var(--m-mag-deep); }
+
+.m-rule {                        /* 那条 3px 线 —— C2 的主线，也是每个组件的描边 */
+  position: absolute; background: var(--m-ink); z-index: 10;
+}
+.m-rule.h { height: var(--m-bw); left: 0; right: 0; transform-origin: left center; }
+.m-rule.v { width: var(--m-bw); top: 0; bottom: 0; transform-origin: center top; }
+.m-rule.mag { background: var(--m-mag-deep); }
+
+.m-stat {                        /* 大数字 */
+  position: absolute;            /* 组件用 left/top 定位 → 必须 absolute（漏了它数字会跑到左上角） */
+  font-family: 'Archivo', 'Arial Black', 'Microsoft YaHei', sans-serif;
+  font-weight: 900; font-size: var(--m-f-num); line-height: 1;
+  font-variant-numeric: tabular-nums; color: var(--m-ink);
+}
+.m-stat em { font-style: normal; font-size: 30px; }
+.m-stat.on-ink { color: #ffffff; }
+/* 对照表与组件总表：同样是"用 left/top 定位的组件"，位置由组件脚本给 */
+.m-tablewrap { position: absolute; }
+.m-index { position: absolute; }
+.m-qmark { font-family: 'Archivo', serif; }
+
+.m-kicker {                      /* 标签块（卡头） */
+  display: inline-block; font-family: 'Consolas', 'Microsoft YaHei', monospace; font-weight: bold;
+  font-size: var(--m-f-label); letter-spacing: .12em;
+  background: var(--m-ink); color: #ffffff;
+  border: var(--m-bw-sm) solid var(--m-ink); padding: 4px 12px;
+}
+.m-kicker.acid { background: var(--m-acid); color: var(--m-ink); }
+.m-kicker.cyan { background: var(--m-cyan); color: var(--m-ink); }
+.m-kicker.mag  { background: var(--m-mag-deep); color: #ffffff; }
+
+.m-t { font-size: var(--m-f-h3); font-weight: 900; line-height: 1.28; color: var(--m-ink); }
+.m-b { font-size: var(--m-f-body); font-weight: 700; line-height: 1.45; color: var(--m-ink); }
+.m-s { font-family: 'Consolas', 'Microsoft YaHei', monospace; font-size: 19px;
+       line-height: 1.4; color: var(--m-mute); }
+.m-b em, .m-t em { font-style: normal; color: var(--m-mag-deep); }   /* 5.57:1 on 米白 */
+
+/* 对照表（第 4 段 / 第 11 段用） */
+.m-table { width: 100%; border-collapse: collapse; background: var(--m-paper); }
+.m-table th, .m-table td {
+  border: var(--m-bw-sm) solid var(--m-ink); padding: 10px 14px;
+  font-size: var(--m-f-body); font-weight: 700; text-align: left; color: var(--m-ink);
+}
+.m-table th { background: var(--m-ink); color: #ffffff; font-weight: 900; }
+.m-table tr.first td { background: var(--m-acid); }        /* 酸绿标该行第一（沿用骨架做法） */
+
+.m-stamp {                       /* 印章 */
+  position: absolute; box-sizing: border-box; opacity: 0;
+  display: grid; place-items: center; text-align: center;
+  width: 132px; height: 132px; border-radius: 50%;
+  background: var(--m-mag-deep); color: #ffffff;
+  border: var(--m-bw-lg) solid var(--m-ink);
+  font-family: 'Consolas', 'Microsoft YaHei', monospace; font-weight: bold;
+  font-size: 24px; line-height: 1.15;
+}
+/* 圆形元素的对比度检查会取 bbox 四角当背景 → 文字必须包一层实底 span */
+.m-stamp .m-stamp-in { display: block; background: var(--m-mag-deep); color: #ffffff; padding: 4px 8px; }
+
+.m-ribbon {                      /* 缎带 / 跑马灯 */
+  position: absolute; left: 0; right: 0; overflow: hidden;
+  background: var(--m-ink); border-top: var(--m-bw) solid var(--m-ink);
+  border-bottom: var(--m-bw) solid var(--m-ink);
+}
+.m-ribbon .m-rline {
+  position: absolute; white-space: nowrap; will-change: transform;
+  font-family: 'Consolas', 'Microsoft YaHei', monospace; font-weight: bold;
+  font-size: var(--m-f-body); line-height: 44px; color: var(--m-acid);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   3 · 孟菲斯装饰（**只在边距与卡内空白**，z-index 在内容之下，绝不压字）
+      摆放纪律：每帧 ≤3 个；合计面积 ≤ 画面 25%；距任何文字 ≥24px。
+   ══════════════════════════════════════════════════════════════════════════ */
+.m-deco { position: absolute; pointer-events: none; z-index: var(--m-deco-z); }
+.m-deco.dot   { border-radius: 50%; background: var(--m-mag); }
+.m-deco.dot.c { background: var(--m-cyan); }
+.m-deco.dot.o { background: var(--m-orange); }
+.m-deco.dot.a { background: var(--m-acid); }
+.m-deco.ring  { border-radius: 50%; background: transparent;
+                border: var(--m-bw) solid var(--m-ink); }
+.m-deco.tri   { background: var(--m-mag); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.m-deco.tri.c { background: var(--m-cyan); }
+.m-deco.tri.a { background: var(--m-acid); }
+.m-deco.arch  {                              /* 拱（孟菲斯的标志形）——装饰，不做容器 */
+  border: var(--m-bw-lg) solid var(--m-ink); border-bottom: 0;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  background: transparent;
+}
+.m-deco.arch.filled { background: var(--m-acid); }
+.m-deco.zig   {                             /* 锯齿：硬边多边形，不用渐变 */
+  background: var(--m-ink);
+  clip-path: polygon(0 100%, 0 60%, 12.5% 0, 25% 60%, 37.5% 0, 50% 60%,
+                     62.5% 0, 75% 60%, 87.5% 0, 100% 60%, 100% 100%);
+}
+.m-deco.checker {                           /* 棋盘：内联 SVG data URI（自包含，无外部请求） */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><rect width='20' height='20' fill='%230a0a0a'/><rect x='20' y='20' width='20' height='20' fill='%230a0a0a'/></svg>");
+  background-size: 40px 40px;
+}
+.m-deco.dotgrid {                           /* 圆点阵 */
+  background-image: radial-gradient(var(--m-ink) 2.5px, transparent 2.6px);
+  background-size: 28px 28px;
+}
+.m-deco.slash {                             /* 斜纹条（母题 M-02：用真字符，零素材） */
+  overflow: hidden; height: 10px; line-height: 10px;
+  font-family: 'Consolas', monospace; font-size: 12px; color: var(--m-ink);
+  text-shadow: 0 0 1px currentColor; word-break: break-all;
+}
+/* ══════════════════════════════════════════════════════════════════════════
+   4 · 资讯片组件（第二轮扩展）——**硬规则写在这里，不让每期自己记**
+      · 字幕条固定在 y 897–988；**场景内容必须收在 y ≤ 848**（0921-jevrepo 的血泪：字幕被口径条吃掉）
+      · HUD 高 60px，内容从 y=96 起，绝不压内容
+      · 进度条贴底（y 1040+），绝不压字幕
+      · 字号下限：body ≥24 / label ≥19（20-visual.md §10.1）
+      · 密度：单帧可读文字 ≤300 字
+   ══════════════════════════════════════════════════════════════════════════ */
+.m-hud {
+  position: absolute; left: 0; right: 0; top: 0; height: 60px; box-sizing: border-box;
+  display: flex; align-items: center;
+  background: var(--m-ink); color: #ffffff;
+  border-bottom: var(--m-bw) solid var(--m-ink);
+  font-family: 'Geist Mono', Consolas, monospace; font-size: 20px;   /* label 档下限 19 */
+}
+.m-hud > span { padding: 0 22px; border-right: 1px solid #4a4a4a; white-space: nowrap; }
+.m-hud > span:last-child { border-right: 0; margin-left: auto; color: var(--m-acid); }
+.m-chapter { position: absolute; }
+.m-chapter-h1 {
+  margin: 14px 0 0; font-size: var(--m-f-h1); line-height: 1.05; font-weight: 900;
+  letter-spacing: -.01em; color: var(--m-ink); white-space: nowrap;
+}
+.m-chapter .m-s { margin-top: 12px; font-size: 26px; }
+/* 字幕条：整句黑条、不滑入滑出、贴 y897–988 */
+.m-cap { position: absolute; left: 0; right: 0; bottom: 92px; z-index: 60; pointer-events: none; text-align: center; }
+.m-cap-in {
+  display: inline-block; box-sizing: border-box; max-width: 1720px;
+  background: var(--m-ink); border: var(--m-bw) solid var(--m-ink);
+  box-shadow: var(--m-shadow-mag);
+  padding: 12px 26px 16px;
+}
+.m-cap-text {
+  display: block; white-space: nowrap; font-weight: 700; letter-spacing: .01em;
+  font-family: 'Archivo', 'Microsoft YaHei', sans-serif; color: #ffffff;
+}
+/* 数字盘 */
+.m-plate {
+  position: absolute; box-sizing: border-box; background: var(--m-paper);
+  border: var(--m-bw) solid var(--m-ink); box-shadow: var(--m-shadow);
+  padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 4px;
+}
+.m-plate-lab { font-family: 'Geist Mono', Consolas, monospace; font-weight: bold; font-size: 20px; letter-spacing: .06em; color: var(--m-mute); }
+.m-plate-val { font-size: var(--m-f-num); font-weight: 900; line-height: 1.02; font-variant-numeric: tabular-nums; color: var(--m-ink); }
+.m-plate-src { font-family: 'Geist Mono', Consolas, monospace; font-size: 19px; line-height: 1.35; color: var(--m-mute); }
+.m-plate.ink { background: var(--m-ink); }
+.m-plate.ink .m-plate-val { color: #ffffff; }
+.m-plate.ink .m-plate-lab, .m-plate.ink .m-plate-src { color: #b0b0b0; }
+/* 条形对照 */
+.m-bars { position: absolute; display: flex; flex-direction: column; gap: 18px; }
+.m-bar-row { display: flex; align-items: center; gap: 18px; height: 56px; }
+.m-bar-lab { flex: 0 0 300px; font-size: 26px; font-weight: 900; color: var(--m-ink); }
+.m-bar-track { flex: 1; height: 40px; background: #ece7dc; border: var(--m-bw-sm) solid var(--m-ink); position: relative; overflow: hidden; }
+.m-bar-fill { position: absolute; inset: 0; transform-origin: 0 50%; transform: scaleX(0); }
+.m-bar-num { flex: 0 0 150px; text-align: right; font-family: 'Geist Mono', Consolas, monospace; font-size: 30px; font-weight: bold; color: var(--m-ink); }
+/* 进度条：贴底、只走真实音频时长 */
+.m-progress { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: #e6e0d4; }
+.m-progress-fill { position: absolute; inset: 0; background: var(--m-acid); transform-origin: 0 50%; transform: scaleX(0); }
+/* 跑马灯 */
+.m-marq-v { position: absolute; font-family: 'Geist Mono', Consolas, monospace; font-size: 20px; line-height: 1.5; white-space: pre-line; color: var(--m-ink); }
+.m-marq-h { position: absolute; white-space: nowrap; font-family: 'Geist Mono', Consolas, monospace; font-size: 20px; color: var(--m-acid); }
+/* 证据框的底部来源条与角标 */
+.m-frame-src {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 8px 14px;
+  background: var(--m-ink); color: #d8d8d8;
+  font-family: 'Geist Mono', Consolas, monospace; font-size: 19px; line-height: 1.3;
+}
+.m-frame-lab {
+  position: absolute; left: 12px; top: 10px; padding: 3px 10px;
+  background: var(--m-acid); color: var(--m-ink);
+  font-family: 'Geist Mono', Consolas, monospace; font-size: 19px; font-weight: bold;
+}
+/* 片尾字标（info 版） */
+.m-endcard { position: absolute; left: 0; right: 0; top: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; }
+.m-endcard-mark { font-size: 112px; font-weight: 900; letter-spacing: -.02em; color: var(--m-ink); white-space: nowrap; }
+.m-endcard-line { font-family: 'Geist Mono', Consolas, monospace; font-size: 22px; color: var(--m-mute); }
+.m-above { position: relative; z-index: 2; }
+.m-deco.safe { opacity: .9; }

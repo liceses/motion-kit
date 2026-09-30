@@ -1,0 +1,10 @@
+# 产物与临时件（不入库）
+renders/
+out/
+dist/
+*.mp4
+film/look.js
+**/__pycache__/
+node_modules/
+.venv/
+_tmp/
